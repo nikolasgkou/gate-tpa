@@ -35,3 +35,11 @@ save the 1001 credentials in private notes, also created 1002 and 1003 (may need
 ---
 
 change the credentials for all the extensions to the extension itself (it's OK for the MVP)
+
+---
+
+SIP is functional. We should commit / push / checkpoint (ensure you use entire.io properly)
+
+---
+
+push brand strategy too
