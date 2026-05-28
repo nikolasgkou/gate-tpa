@@ -27,11 +27,14 @@ Gemini Live is WebSocket-based and does not expose a SIP trunk. In the PBX, rout
 
 ## Demo Scenarios
 
-The bridge uses the AudioSocket UUID from Asterisk to select a scenario:
+The short Emma and Olivia handoff prompts are pre-rendered as Asterisk sound files so the dialplan can continue to the target extension immediately after playback:
 
-- `00000000-0000-0000-0000-000000001001`: Sarah calls Emma, Gate announces the trusted connection, then Asterisk dials Emma.
-- `00000000-0000-0000-0000-000000001002`: unknown caller calls Emma, Gate announces routing to Sarah, then Asterisk dials Sarah.
-- `00000000-0000-0000-0000-000000001003`: unknown caller calls Olivia, Gate offers caregiver/message, then Asterisk dials Mark.
+- `1002 -> 1001`: Gate announces the trusted Sarah-to-Emma connection, then Asterisk dials Emma.
+- `1007 -> 1001`: Gate announces routing to Sarah, then Asterisk dials Sarah.
+- `1007 -> 1003`: Gate offers caregiver/message, then Asterisk dials Mark.
+
+The live bridge uses the AudioSocket UUID from Asterisk for the Bruce scenario:
+
 - `00000000-0000-0000-0000-000000001005`: John calls Bruce. If the caller says `urgent`, Gate announces transfer and Asterisk dials Bruce. Otherwise Gate says Bruce will be notified and Asterisk ends the call.
 
-The spoken prompts are intentionally short for the presentation flow. Asterisk performs the actual transfers after the bridge closes the AudioSocket connection.
+The spoken prompts are intentionally short for the presentation flow.

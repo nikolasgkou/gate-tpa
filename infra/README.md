@@ -13,6 +13,17 @@ This deploys the MVP SIP target: an Azure-hosted Asterisk PBX for Linphone clien
   - `5060/UDP` for SIP.
   - `10000-10100/UDP` for RTP media.
 
+## Gate Voice Prompts
+
+The simple demo handoff prompts are pre-rendered Gemini voice files under `infra/asterisk/sounds/en/gate`.
+Install them on the PBX before applying the dialplan:
+
+```sh
+bin/install-asterisk-prompts.sh
+```
+
+The installer copies them into Asterisk's active data directory, `/usr/share/asterisk/sounds/en/gate`. The Emma and Olivia routes use Asterisk `Playback()` for these short prompts, then continue with normal `Dial()` forwarding. This keeps the scenario handoffs deterministic during the demo.
+
 ## Gemini AI Bridge
 
 Route `9001` answers the call in Asterisk and streams audio to the local Gemini bridge:
@@ -21,7 +32,7 @@ Route `9001` answers the call in Asterisk and streams audio to the local Gemini 
 AudioSocket(00000000-0000-0000-0000-000000000001,127.0.0.1:9092)
 ```
 
-The Gemini Live API is WebSocket-based, not SIP-based. The bridge process listens on `127.0.0.1:9092`, receives Asterisk AudioSocket PCM, streams caller audio to Gemini Live, and plays Gemini audio back into the call.
+The Gemini Live API is WebSocket-based, not SIP-based. The bridge process listens on `127.0.0.1:9092`, receives Asterisk AudioSocket PCM, streams caller audio to Gemini Live, and plays Gemini audio back into the call. The live bridge is used for `9001` and for the Bruce urgent/non-urgent screening route.
 
 ## Linphone Test Accounts
 
