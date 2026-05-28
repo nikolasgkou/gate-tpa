@@ -183,3 +183,7 @@ I should hear something from gemini right?
 ---
 
 I'm on the phone RN, no audio
+
+---
+
+commit/push and checkpoint
