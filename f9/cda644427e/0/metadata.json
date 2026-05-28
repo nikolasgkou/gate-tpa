@@ -1,0 +1,119 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "f9cda644427e",
+  "session_id": "019e6e38-bf42-7a91-b043-ac388d895255",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T15:03:08.782318111Z",
+  "branch": "master",
+  "checkpoints_count": 7,
+  "files_touched": [
+    "infra/README.md",
+    "infra/cloud-init/asterisk.yaml",
+    "src/gate_ai_agent/README.md",
+    "src/gate_ai_agent/audiosocket_bridge.py"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "1e65744432d9",
+  "token_usage": {
+    "input_tokens": 2814417,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 91708800,
+    "output_tokens": 180191,
+    "api_call_count": 689
+  },
+  "session_metrics": {
+    "turn_count": 50
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T15:03:08.653499905Z",
+    "agent_lines": 330,
+    "agent_removed": 48,
+    "human_added": 0,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 330,
+    "total_lines_changed": 378,
+    "agent_percentage": 100,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 49,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 49,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 49,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 49,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 49,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 330,
+      "agent_lines_removed": 48,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    }
+  ]
+}

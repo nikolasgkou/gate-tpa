@@ -1,0 +1,28 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "f9cda644427e",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 7,
+  "files_touched": [
+    "infra/README.md",
+    "infra/cloud-init/asterisk.yaml",
+    "src/gate_ai_agent/README.md",
+    "src/gate_ai_agent/audiosocket_bridge.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/f9/cda644427e/0/metadata.json",
+      "transcript": "/f9/cda644427e/0/full.jsonl",
+      "content_hash": "/f9/cda644427e/0/content_hash.txt",
+      "prompt": "/f9/cda644427e/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 2814417,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 91708800,
+    "output_tokens": 180191,
+    "api_call_count": 689
+  }
+}
