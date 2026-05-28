@@ -67,3 +67,23 @@ Just need 1004 -> Caller for now, implement
 ---
 
 You'll find a contact list in meeting notes, adjust accordingly, 1001..n
+
+---
+
+Why does it think that the checkpoint branch is the default? What is configured on gitea? Entire.io thinks the project is "Stale"
+
+---
+
+I have x2 codex agents running at the same time that's why
+
+---
+
+commit/push
+
+---
+
+Now we need to configure some routing stuff that are very much more tied to the product. We also need an AI agent extension (whisper?)
+
+---
+
+that's correct, we need this API for the gate AI agent https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/realtime-audio-sip , go ahead and implement
