@@ -16,4 +16,4 @@ azure-pbx-deploy: azure-key
     az deployment group create --resource-group {{resource-group}} --name {{deployment}} --template-file infra/main.bicep --parameters adminSshPublicKey="$(cat {{ssh-key}})"
 
 azure-pbx-credentials:
-    az vm run-command invoke --resource-group {{resource-group}} --name gate-tpa-pbx --command-id RunShellScript --scripts 'cat /root/gate-tpa-linphone-1001.txt' --query "value[0].message" --output tsv
+    az vm run-command invoke --resource-group {{resource-group}} --name gate-tpa-pbx --command-id RunShellScript --scripts 'cat /root/gate-tpa-linphone-credentials.txt' --query "value[0].message" --output tsv

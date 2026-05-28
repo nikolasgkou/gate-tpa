@@ -2,7 +2,6 @@
 package_update: true
 packages:
   - asterisk
-  - openssl
 
 write_files:
   - path: /usr/local/sbin/gate-tpa-configure-asterisk
@@ -16,13 +15,8 @@ write_files:
       sip_port="__SIP_PORT__"
       rtp_start="__RTP_START__"
       rtp_end="__RTP_END__"
-      credential_file="/root/gate-tpa-linphone-1001.txt"
-
-      if [ -f "${credential_file}" ]; then
-        sip_password="$(awk -F': ' '/^Password:/ {print $2}' "${credential_file}")"
-      else
-        sip_password="$(openssl rand -base64 36 | tr -dc 'A-Za-z0-9' | head -c 28)"
-      fi
+      credential_file="/root/gate-tpa-linphone-credentials.txt"
+      legacy_credential_file="/root/gate-tpa-linphone-1001.txt"
 
       cat > /etc/asterisk/pjsip.conf <<EOF
       [global]
@@ -36,8 +30,12 @@ write_files:
       external_media_address=${public_ip}
       external_signaling_address=${public_ip}
       local_net=10.42.0.0/16
+      EOF
 
-      [1001]
+      for extension in 1001 1002 1003; do
+        cat >> /etc/asterisk/pjsip.conf <<EOF
+
+      [${extension}]
       type=endpoint
       transport=transport-udp
       context=gate-internal
@@ -49,22 +47,23 @@ write_files:
       force_rport=yes
       rewrite_contact=yes
       dtmf_mode=rfc4733
-      auth=auth1001
-      aors=1001
-      callerid=Gate TPA <1001>
+      auth=auth${extension}
+      aors=${extension}
+      callerid=Gate TPA <${extension}>
 
-      [auth1001]
+      [auth${extension}]
       type=auth
       auth_type=userpass
-      username=1001
-      password=${sip_password}
+      username=${extension}
+      password=${extension}
 
-      [1001]
+      [${extension}]
       type=aor
       max_contacts=3
       remove_existing=yes
       qualify_frequency=30
       EOF
+      done
 
       cat > /etc/asterisk/extensions.conf <<'EOF'
       [general]
@@ -82,6 +81,12 @@ write_files:
 
       exten => 1001,1,Dial(PJSIP/1001,30)
        same => n,Hangup()
+
+      exten => 1002,1,Dial(PJSIP/1002,30)
+       same => n,Hangup()
+
+      exten => 1003,1,Dial(PJSIP/1003,30)
+       same => n,Hangup()
       EOF
 
       cat > /etc/asterisk/rtp.conf <<EOF
@@ -96,14 +101,25 @@ write_files:
       chmod 0640 /etc/asterisk/pjsip.conf /etc/asterisk/extensions.conf /etc/asterisk/rtp.conf
 
       cat > "${credential_file}" <<EOF
-      Username: 1001
-      Password: ${sip_password}
       SIP server: ${public_ip}
       SIP port: ${sip_port}
       Transport: UDP
       Echo test: 600
+
+      Username: 1001
+      Auth username: 1001
+      Password: 1001
+
+      Username: 1002
+      Auth username: 1002
+      Password: 1002
+
+      Username: 1003
+      Auth username: 1003
+      Password: 1003
       EOF
-      chmod 0600 "${credential_file}"
+      cp "${credential_file}" "${legacy_credential_file}"
+      chmod 0600 "${credential_file}" "${legacy_credential_file}"
 
       systemctl enable asterisk
       systemctl restart asterisk
