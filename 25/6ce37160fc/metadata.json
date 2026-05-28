@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "256ce37160fc",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "docs/gate-tpa-brand-strategy.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/25/6ce37160fc/0/metadata.json",
+      "transcript": "/25/6ce37160fc/0/full.jsonl",
+      "content_hash": "/25/6ce37160fc/0/content_hash.txt",
+      "prompt": "/25/6ce37160fc/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 711945,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 17635840,
+    "output_tokens": 44454,
+    "api_call_count": 185
+  }
+}
