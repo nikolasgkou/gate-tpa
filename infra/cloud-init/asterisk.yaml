@@ -1,0 +1,112 @@
+#cloud-config
+package_update: true
+packages:
+  - asterisk
+  - openssl
+
+write_files:
+  - path: /usr/local/sbin/gate-tpa-configure-asterisk
+    permissions: '0750'
+    owner: root:root
+    content: |
+      #!/usr/bin/env bash
+      set -euo pipefail
+
+      public_ip="__PUBLIC_IP__"
+      sip_port="__SIP_PORT__"
+      rtp_start="__RTP_START__"
+      rtp_end="__RTP_END__"
+      credential_file="/root/gate-tpa-linphone-1001.txt"
+
+      if [ -f "${credential_file}" ]; then
+        sip_password="$(awk -F': ' '/^Password:/ {print $2}' "${credential_file}")"
+      else
+        sip_password="$(openssl rand -base64 36 | tr -dc 'A-Za-z0-9' | head -c 28)"
+      fi
+
+      cat > /etc/asterisk/pjsip.conf <<EOF
+      [global]
+      type=global
+      user_agent=GateTPA-PBX
+
+      [transport-udp]
+      type=transport
+      protocol=udp
+      bind=0.0.0.0:${sip_port}
+      external_media_address=${public_ip}
+      external_signaling_address=${public_ip}
+      local_net=10.42.0.0/16
+
+      [1001]
+      type=endpoint
+      transport=transport-udp
+      context=gate-internal
+      disallow=all
+      allow=ulaw
+      allow=alaw
+      direct_media=no
+      rtp_symmetric=yes
+      force_rport=yes
+      rewrite_contact=yes
+      dtmf_mode=rfc4733
+      auth=auth1001
+      aors=1001
+      callerid=Gate TPA <1001>
+
+      [auth1001]
+      type=auth
+      auth_type=userpass
+      username=1001
+      password=${sip_password}
+
+      [1001]
+      type=aor
+      max_contacts=3
+      remove_existing=yes
+      qualify_frequency=30
+      EOF
+
+      cat > /etc/asterisk/extensions.conf <<'EOF'
+      [general]
+      static=yes
+      writeprotect=no
+      clearGlobalVars=no
+
+      [globals]
+
+      [gate-internal]
+      exten => 600,1,Answer()
+       same => n,Playback(demo-echotest)
+       same => n,Echo()
+       same => n,Hangup()
+
+      exten => 1001,1,Dial(PJSIP/1001,30)
+       same => n,Hangup()
+      EOF
+
+      cat > /etc/asterisk/rtp.conf <<EOF
+      [general]
+      rtpstart=${rtp_start}
+      rtpend=${rtp_end}
+      strictrtp=yes
+      icesupport=no
+      EOF
+
+      chown asterisk:asterisk /etc/asterisk/pjsip.conf /etc/asterisk/extensions.conf /etc/asterisk/rtp.conf
+      chmod 0640 /etc/asterisk/pjsip.conf /etc/asterisk/extensions.conf /etc/asterisk/rtp.conf
+
+      cat > "${credential_file}" <<EOF
+      Username: 1001
+      Password: ${sip_password}
+      SIP server: ${public_ip}
+      SIP port: ${sip_port}
+      Transport: UDP
+      Echo test: 600
+      EOF
+      chmod 0600 "${credential_file}"
+
+      systemctl enable asterisk
+      systemctl restart asterisk
+
+runcmd:
+  - /usr/local/sbin/gate-tpa-configure-asterisk
