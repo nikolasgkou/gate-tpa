@@ -1,5 +1,8 @@
 # Gate TPA
 
+Built with Entire for AI-agent checkpoints and collaboration:
+https://entire.io/gh/nikolasgkou/gate-tpa/overview
+
 Gate TPA is a trusted personal assistant for phone calls. It protects vulnerable
 or busy people by screening incoming SIP calls, playing short AI voice prompts,
 and routing calls to the right trusted person.
