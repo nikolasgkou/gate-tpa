@@ -1,0 +1,25 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "201d0a0792af",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "docs/gate-tpa-product-brief.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/20/1d0a0792af/0/metadata.json",
+      "transcript": "/20/1d0a0792af/0/full.jsonl",
+      "content_hash": "/20/1d0a0792af/0/content_hash.txt",
+      "prompt": "/20/1d0a0792af/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 3953,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 70784,
+    "output_tokens": 1953,
+    "api_call_count": 3
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "201d0a0792af",
+  "session_id": "019e6e6d-a19b-7971-bfc9-eae3414bc5b4",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T12:13:46.04834619Z",
+  "branch": "master",
+  "checkpoints_count": 0,
+  "files_touched": [
+    "docs/gate-tpa-product-brief.md"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "8e665d0926ae",
+  "checkpoint_transcript_start": 114,
+  "transcript_lines_at_start": 114,
+  "token_usage": {
+    "input_tokens": 3953,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 70784,
+    "output_tokens": 1953,
+    "api_call_count": 3
+  },
+  "session_metrics": {
+    "turn_count": 3
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T12:13:46.042409125Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 171,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 171,
+    "total_lines_changed": 171,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 1,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    }
+  ]
+}
