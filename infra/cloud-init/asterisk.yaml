@@ -32,7 +32,7 @@ write_files:
       local_net=10.42.0.0/16
       EOF
 
-      for extension in 1001 1002 1003; do
+      for extension in 1001 1002 1003 1004; do
         cat >> /etc/asterisk/pjsip.conf <<EOF
 
       [${extension}]
@@ -87,6 +87,9 @@ write_files:
 
       exten => 1003,1,Dial(PJSIP/1003,30)
        same => n,Hangup()
+
+      exten => 1004,1,Dial(PJSIP/1004,30)
+       same => n,Hangup()
       EOF
 
       cat > /etc/asterisk/rtp.conf <<EOF
@@ -117,6 +120,10 @@ write_files:
       Username: 1003
       Auth username: 1003
       Password: 1003
+
+      Username: 1004
+      Auth username: 1004
+      Password: 1004
       EOF
       cp "${credential_file}" "${legacy_credential_file}"
       chmod 0600 "${credential_file}" "${legacy_credential_file}"
