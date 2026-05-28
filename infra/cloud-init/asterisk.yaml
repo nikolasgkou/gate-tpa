@@ -26,7 +26,9 @@ write_files:
         "1005|Bruce Jameson|in a meeting"
         "1006|John Michaels|employee"
         "1007|Stranger|unknown"
+        "1008|Gate AI Agent|AI screener"
       )
+      azure_ai_sip_uri="sip:proj_3bf3b9942812477980c40f1948d6b247@swedencentral.sip.ai.azure.com\\;transport=tls"
 
       cat > /etc/asterisk/pjsip.conf <<EOF
       [global]
@@ -37,6 +39,15 @@ write_files:
       type=transport
       protocol=udp
       bind=0.0.0.0:${sip_port}
+      external_media_address=${public_ip}
+      external_signaling_address=${public_ip}
+      local_net=10.42.0.0/16
+
+      [transport-tls]
+      type=transport
+      protocol=tls
+      bind=0.0.0.0:5061
+      method=tlsv1_2
       external_media_address=${public_ip}
       external_signaling_address=${public_ip}
       local_net=10.42.0.0/16
@@ -54,6 +65,10 @@ write_files:
       exten => 600,1,Answer()
        same => n,Playback(demo-echotest)
        same => n,Echo()
+       same => n,Hangup()
+
+      exten => 9001,1,NoOp(Gate AI Agent via Azure OpenAI Realtime SIP)
+       same => n,Dial(PJSIP/${azure_ai_sip_uri},60)
        same => n,Hangup()
       EOF
 

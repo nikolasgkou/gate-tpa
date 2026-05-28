@@ -8,6 +8,8 @@ This deploys the MVP SIP target: an Azure-hosted Asterisk PBX for Linphone clien
 - Static public IP with DNS label.
 - Network security group allowing:
   - `22/TCP` for SSH.
+  - `80/TCP` for Let's Encrypt HTTP validation.
+  - `443/TCP` for the Gate AI Agent webhook.
   - `5060/UDP` for SIP.
   - `10000-10100/UDP` for RTP media.
 
@@ -46,6 +48,11 @@ Current contact mapping:
 | `1005` | Bruce Jameson | in a meeting |
 | `1006` | John Michaels | employee |
 | `1007` | Stranger | unknown |
+| `1008` | Gate AI Agent | AI screener |
+
+Special routes:
+
+- `9001`: route to Azure OpenAI Realtime SIP (`Gate AI Agent`)
 
 ## Notes
 
