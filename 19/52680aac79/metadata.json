@@ -1,0 +1,30 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "1952680aac79",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "infra/README.md",
+    "infra/cloud-init/asterisk.yaml",
+    "infra/main.bicep",
+    "src/gate_ai_agent/README.md",
+    "src/gate_ai_agent/app.py",
+    "src/gate_ai_agent/requirements.txt"
+  ],
+  "sessions": [
+    {
+      "metadata": "/19/52680aac79/0/metadata.json",
+      "transcript": "/19/52680aac79/0/full.jsonl",
+      "content_hash": "/19/52680aac79/0/content_hash.txt",
+      "prompt": "/19/52680aac79/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 996172,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 40440704,
+    "output_tokens": 72967,
+    "api_call_count": 314
+  }
+}

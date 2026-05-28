@@ -1,0 +1,62 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "1952680aac79",
+  "session_id": "019e6e38-bf42-7a91-b043-ac388d895255",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T13:16:42.118432138Z",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "infra/README.md",
+    "infra/cloud-init/asterisk.yaml",
+    "infra/main.bicep",
+    "src/gate_ai_agent/README.md",
+    "src/gate_ai_agent/app.py",
+    "src/gate_ai_agent/requirements.txt"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "18a8d12ffa2b",
+  "token_usage": {
+    "input_tokens": 996172,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 40440704,
+    "output_tokens": 72967,
+    "api_call_count": 314
+  },
+  "session_metrics": {
+    "turn_count": 19
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T13:16:42.063985078Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 206,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 206,
+    "total_lines_changed": 206,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    }
+  ]
+}
