@@ -63,3 +63,7 @@ and we also probably need a caller extension right?
 ---
 
 Just need 1004 -> Caller for now, implement
+
+---
+
+You'll find a contact list in meeting notes, adjust accordingly, 1001..n
