@@ -13,6 +13,16 @@ This deploys the MVP SIP target: an Azure-hosted Asterisk PBX for Linphone clien
   - `5060/UDP` for SIP.
   - `10000-10100/UDP` for RTP media.
 
+## Gemini AI Bridge
+
+Route `9001` answers the call in Asterisk and streams audio to the local Gemini bridge:
+
+```text
+AudioSocket(00000000-0000-0000-0000-000000000001,127.0.0.1:9092)
+```
+
+The Gemini Live API is WebSocket-based, not SIP-based. The bridge process listens on `127.0.0.1:9092`, receives Asterisk AudioSocket PCM, streams caller audio to Gemini Live, and plays Gemini audio back into the call.
+
 ## Linphone Test Accounts
 
 The MVP extensions use their extension number as the password. Retrieve the current VM copy after deployment:
@@ -48,11 +58,11 @@ Current contact mapping:
 | `1005` | Bruce Jameson | in a meeting |
 | `1006` | John Michaels | employee |
 | `1007` | Stranger | unknown |
-| `1008` | Gate AI Agent | AI screener |
+| `1008` | Gate AI Agent | reserved |
 
 Special routes:
 
-- `9001`: route to Azure OpenAI Realtime SIP (`Gate AI Agent`)
+- `9001`: route to the local Gemini AudioSocket bridge (`Gate AI Agent`)
 
 ## Notes
 

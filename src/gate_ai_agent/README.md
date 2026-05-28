@@ -1,19 +1,26 @@
 # Gate AI Agent
 
-Webhook service for Azure OpenAI Realtime SIP calls.
+Gemini-backed call screening service for Gate TPA.
 
 ## Runtime Settings
 
-- `AZURE_OPENAI_ENDPOINT`: Azure OpenAI endpoint, for example `https://<resource>.openai.azure.com`
-- `AZURE_OPENAI_API_KEY`: Azure OpenAI API key
-- `AZURE_OPENAI_REALTIME_DEPLOYMENT`: realtime model deployment name
-- `OPENAI_WEBHOOK_SECRET`: webhook signing secret returned when creating the Azure OpenAI webhook endpoint
-- `GATE_AI_AGENT_NAME`: optional display name used in the first spoken response
-- `GATE_AI_AGENT_VOICE`: optional realtime voice name
+- `GEMINI_API_KEY`: Gemini API key.
+- `GEMINI_LIVE_MODEL`: optional Live API model, defaults to `gemini-3.1-flash-live-preview`.
+- `GEMINI_TEXT_MODEL`: optional text model for non-voice screening decisions, defaults to `gemini-2.5-flash`.
+- `GATE_AI_AGENT_NAME`: optional display name used in smoke-test prompts.
 
 ## Routes
 
-- `GET /healthz`: health check
-- `POST /webhook`: Azure OpenAI webhook endpoint for `realtime.call.incoming`
+- `GET /healthz`: health check.
+- `POST /screen-text`: text-only call-screening decision helper.
+- `POST /live-smoke`: opens a Gemini Live session and verifies that audio output is returned.
 
-The webhook verifies the signature, accepts incoming SIP calls, opens a WebSocket to the realtime session, and sends the first greeting response.
+## AudioSocket Bridge
+
+Run the bridge on the PBX host:
+
+```sh
+python -m src.gate_ai_agent.audiosocket_bridge --host 127.0.0.1 --port 9092
+```
+
+Gemini Live is WebSocket-based and does not expose a SIP trunk. In the PBX, route `9001` answers the call and uses Asterisk `AudioSocket()` to stream call audio to this process.

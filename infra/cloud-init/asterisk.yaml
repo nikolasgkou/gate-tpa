@@ -26,10 +26,8 @@ write_files:
         "1005|Bruce Jameson|in a meeting"
         "1006|John Michaels|employee"
         "1007|Stranger|unknown"
-        "1008|Gate AI Agent|AI screener"
+        "1008|Gate AI Agent|Gemini bridge"
       )
-      azure_ai_sip_uri="sip:proj_3bf3b9942812477980c40f1948d6b247@swedencentral.sip.ai.azure.com\\;transport=tls"
-
       cat > /etc/asterisk/pjsip.conf <<EOF
       [global]
       type=global
@@ -53,7 +51,7 @@ write_files:
       local_net=10.42.0.0/16
       EOF
 
-      cat > /etc/asterisk/extensions.conf <<'EOF'
+      cat > /etc/asterisk/extensions.conf <<EOF
       [general]
       static=yes
       writeprotect=no
@@ -67,8 +65,10 @@ write_files:
        same => n,Echo()
        same => n,Hangup()
 
-      exten => 9001,1,NoOp(Gate AI Agent via Azure OpenAI Realtime SIP)
-       same => n,Dial(PJSIP/${azure_ai_sip_uri},60)
+      exten => 9001,1,NoOp(Gate AI Agent via Gemini bridge extension 1008)
+       same => n,Answer()
+       same => n,Set(AUDIOSOCKET_UUID=00000000-0000-0000-0000-000000000001)
+       same => n,AudioSocket(\${AUDIOSOCKET_UUID},127.0.0.1:9092)
        same => n,Hangup()
       EOF
 
