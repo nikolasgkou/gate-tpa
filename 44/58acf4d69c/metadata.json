@@ -1,0 +1,33 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "4458acf4d69c",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 11,
+  "files_touched": [
+    "README.md",
+    "bin/install-asterisk-prompts.sh",
+    "infra/README.md",
+    "infra/asterisk/sounds/en/gate/olivia-connect-caregiver.ulaw",
+    "infra/asterisk/sounds/en/gate/olivia-question.ulaw",
+    "infra/asterisk/sounds/en/gate/route-sarah.ulaw",
+    "infra/asterisk/sounds/en/gate/sarah-emma.ulaw",
+    "infra/cloud-init/asterisk.yaml",
+    "src/gate_ai_agent/README.md"
+  ],
+  "sessions": [
+    {
+      "metadata": "/44/58acf4d69c/0/metadata.json",
+      "transcript": "/44/58acf4d69c/0/full.jsonl",
+      "content_hash": "/44/58acf4d69c/0/content_hash.txt",
+      "prompt": "/44/58acf4d69c/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 3193184,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 96871936,
+    "output_tokens": 210432,
+    "api_call_count": 749
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "4458acf4d69c",
+  "session_id": "019e6e38-bf42-7a91-b043-ac388d895255",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T15:52:32.153025972Z",
+  "branch": "master",
+  "checkpoints_count": 11,
+  "files_touched": [
+    "README.md",
+    "bin/install-asterisk-prompts.sh",
+    "infra/README.md",
+    "infra/asterisk/sounds/en/gate/olivia-connect-caregiver.ulaw",
+    "infra/asterisk/sounds/en/gate/olivia-question.ulaw",
+    "infra/asterisk/sounds/en/gate/route-sarah.ulaw",
+    "infra/asterisk/sounds/en/gate/sarah-emma.ulaw",
+    "infra/cloud-init/asterisk.yaml",
+    "src/gate_ai_agent/README.md"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "863a72a80db0",
+  "token_usage": {
+    "input_tokens": 3193184,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 96871936,
+    "output_tokens": 210432,
+    "api_call_count": 749
+  },
+  "session_metrics": {
+    "turn_count": 63
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T15:52:32.007991105Z",
+    "agent_lines": 257,
+    "agent_removed": 12,
+    "human_added": 3,
+    "human_modified": 3,
+    "human_removed": 0,
+    "total_committed": 263,
+    "total_lines_changed": 275,
+    "agent_percentage": 97.81818181818181,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 76,
+      "agent_lines_removed": 12,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 76,
+      "agent_lines_removed": 12,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 76,
+      "agent_lines_removed": 12,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 6,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 76,
+      "agent_lines_removed": 12,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 7,
+      "user_lines_added": 140,
+      "user_lines_removed": 3,
+      "agent_lines_added": 76,
+      "agent_lines_removed": 12,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132,
+        "infra/cloud-init/asterisk.yaml": 6
+      },
+      "user_removed_per_file": {
+        "infra/cloud-init/asterisk.yaml": 3
+      }
+    },
+    {
+      "checkpoint_number": 8,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 82,
+      "agent_lines_removed": 15,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 9,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 82,
+      "agent_lines_removed": 15,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 10,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 82,
+      "agent_lines_removed": 15,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 11,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 82,
+      "agent_lines_removed": 15,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    },
+    {
+      "checkpoint_number": 12,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 266,
+      "agent_lines_removed": 15,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    }
+  ]
+}
