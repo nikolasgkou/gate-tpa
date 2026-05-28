@@ -215,3 +215,7 @@ we have a condition, if you hear the word urgent within 5 seconds you will make 
 ---
 
 Proceed with the implementation
+
+---
+
+commit push checkpoint
