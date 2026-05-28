@@ -25,15 +25,27 @@ az vm run-command invoke \
   --output tsv
 ```
 
-Use these Linphone fields:
+Use these Linphone fields for any account:
 
-- Username: `1001`, `1002`, or `1003`
+- Username: one of `1001` through `1007`
 - Auth username: same as username
 - Password: same as username
 - Domain/SIP server: deployment output `publicIpAddress` or `fqdn`
 - Transport: `UDP`
 - Port: `5060`
 - Test call: dial `600` for echo test
+
+Current contact mapping:
+
+| Extension | Display name | Role |
+| --- | --- | --- |
+| `1001` | Emma Newman | child |
+| `1002` | Sarah Newman | mother |
+| `1003` | Olivia Descarte | Alzheimer's |
+| `1004` | Mark Descarte | son and caregiver |
+| `1005` | Bruce Jameson | in a meeting |
+| `1006` | John Michaels | employee |
+| `1007` | Stranger | unknown |
 
 ## Notes
 

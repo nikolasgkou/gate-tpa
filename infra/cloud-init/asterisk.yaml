@@ -18,6 +18,16 @@ write_files:
       credential_file="/root/gate-tpa-linphone-credentials.txt"
       legacy_credential_file="/root/gate-tpa-linphone-1001.txt"
 
+      extensions=(
+        "1001|Emma Newman|child"
+        "1002|Sarah Newman|mother"
+        "1003|Olivia Descarte|Alzheimer's"
+        "1004|Mark Descarte|son and caregiver"
+        "1005|Bruce Jameson|in a meeting"
+        "1006|John Michaels|employee"
+        "1007|Stranger|unknown"
+      )
+
       cat > /etc/asterisk/pjsip.conf <<EOF
       [global]
       type=global
@@ -32,7 +42,32 @@ write_files:
       local_net=10.42.0.0/16
       EOF
 
-      for extension in 1001 1002 1003 1004; do
+      cat > /etc/asterisk/extensions.conf <<'EOF'
+      [general]
+      static=yes
+      writeprotect=no
+      clearGlobalVars=no
+
+      [globals]
+
+      [gate-internal]
+      exten => 600,1,Answer()
+       same => n,Playback(demo-echotest)
+       same => n,Echo()
+       same => n,Hangup()
+      EOF
+
+      cat > "${credential_file}" <<EOF
+      SIP server: ${public_ip}
+      SIP port: ${sip_port}
+      Transport: UDP
+      Echo test: 600
+
+      EOF
+
+      for contact in "${extensions[@]}"; do
+        IFS='|' read -r extension display_name role <<< "${contact}"
+
         cat >> /etc/asterisk/pjsip.conf <<EOF
 
       [${extension}]
@@ -49,7 +84,7 @@ write_files:
       dtmf_mode=rfc4733
       auth=auth${extension}
       aors=${extension}
-      callerid=Gate TPA <${extension}>
+      callerid=${display_name} <${extension}>
 
       [auth${extension}]
       type=auth
@@ -63,34 +98,22 @@ write_files:
       remove_existing=yes
       qualify_frequency=30
       EOF
-      done
 
-      cat > /etc/asterisk/extensions.conf <<'EOF'
-      [general]
-      static=yes
-      writeprotect=no
-      clearGlobalVars=no
+        cat >> /etc/asterisk/extensions.conf <<EOF
 
-      [globals]
-
-      [gate-internal]
-      exten => 600,1,Answer()
-       same => n,Playback(demo-echotest)
-       same => n,Echo()
-       same => n,Hangup()
-
-      exten => 1001,1,Dial(PJSIP/1001,30)
-       same => n,Hangup()
-
-      exten => 1002,1,Dial(PJSIP/1002,30)
-       same => n,Hangup()
-
-      exten => 1003,1,Dial(PJSIP/1003,30)
-       same => n,Hangup()
-
-      exten => 1004,1,Dial(PJSIP/1004,30)
+      exten => ${extension},1,Dial(PJSIP/${extension},30)
        same => n,Hangup()
       EOF
+
+        cat >> "${credential_file}" <<EOF
+      Username: ${extension}
+      Auth username: ${extension}
+      Password: ${extension}
+      Display name: ${display_name}
+      Role: ${role}
+
+      EOF
+      done
 
       cat > /etc/asterisk/rtp.conf <<EOF
       [general]
@@ -102,29 +125,6 @@ write_files:
 
       chown asterisk:asterisk /etc/asterisk/pjsip.conf /etc/asterisk/extensions.conf /etc/asterisk/rtp.conf
       chmod 0640 /etc/asterisk/pjsip.conf /etc/asterisk/extensions.conf /etc/asterisk/rtp.conf
-
-      cat > "${credential_file}" <<EOF
-      SIP server: ${public_ip}
-      SIP port: ${sip_port}
-      Transport: UDP
-      Echo test: 600
-
-      Username: 1001
-      Auth username: 1001
-      Password: 1001
-
-      Username: 1002
-      Auth username: 1002
-      Password: 1002
-
-      Username: 1003
-      Auth username: 1003
-      Password: 1003
-
-      Username: 1004
-      Auth username: 1004
-      Password: 1004
-      EOF
       cp "${credential_file}" "${legacy_credential_file}"
       chmod 0600 "${credential_file}" "${legacy_credential_file}"
 
