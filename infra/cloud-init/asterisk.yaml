@@ -51,7 +51,7 @@ write_files:
       local_net=10.42.0.0/16
       EOF
 
-      cat > /etc/asterisk/extensions.conf <<EOF
+      cat > /etc/asterisk/extensions.conf <<'EOF'
       [general]
       static=yes
       writeprotect=no
@@ -68,7 +68,58 @@ write_files:
       exten => 9001,1,NoOp(Gate AI Agent via Gemini bridge extension 1008)
        same => n,Answer()
        same => n,Set(AUDIOSOCKET_UUID=00000000-0000-0000-0000-000000000001)
-       same => n,AudioSocket(\${AUDIOSOCKET_UUID},127.0.0.1:9092)
+       same => n,AudioSocket(${AUDIOSOCKET_UUID},127.0.0.1:9092)
+       same => n,Hangup()
+
+      exten => 1001,1,NoOp(Gate scenario: Emma Newman)
+       same => n,GotoIf($["${CALLERID(num)}"="1002"]?emma_mother,1)
+       same => n,GotoIf($["${CALLERID(num)}"="1007"]?emma_unknown,1)
+       same => n,Dial(PJSIP/1001,30)
+       same => n,Hangup()
+
+      exten => emma_mother,1,NoOp(Trusted parent to child)
+       same => n,Answer()
+       same => n,Set(AUDIOSOCKET_UUID=00000000-0000-0000-0000-000000001001)
+       same => n,AudioSocket(${AUDIOSOCKET_UUID},127.0.0.1:9092)
+       same => n,Dial(PJSIP/1001,30)
+       same => n,Hangup()
+
+      exten => emma_unknown,1,NoOp(Unknown caller to child rerouted to parent)
+       same => n,Answer()
+       same => n,Set(AUDIOSOCKET_UUID=00000000-0000-0000-0000-000000001002)
+       same => n,AudioSocket(${AUDIOSOCKET_UUID},127.0.0.1:9092)
+       same => n,Dial(PJSIP/1002,30)
+       same => n,Hangup()
+
+      exten => 1003,1,NoOp(Gate scenario: Olivia Descarte)
+       same => n,GotoIf($["${CALLERID(num)}"="1007"]?olivia_unknown,1)
+       same => n,Dial(PJSIP/1003,30)
+       same => n,Hangup()
+
+      exten => olivia_unknown,1,NoOp(Unknown caller to elderly person)
+       same => n,Answer()
+       same => n,Set(AUDIOSOCKET_UUID=00000000-0000-0000-0000-000000001003)
+       same => n,AudioSocket(${AUDIOSOCKET_UUID},127.0.0.1:9092)
+       same => n,Dial(PJSIP/1004,30)
+       same => n,Hangup()
+
+      exten => 1005,1,NoOp(Gate scenario: Bruce Jameson)
+       same => n,GotoIf($["${CALLERID(num)}"="1006"]?bruce_employee,1)
+       same => n,Dial(PJSIP/1005,30)
+       same => n,Hangup()
+
+      exten => bruce_employee,1,NoOp(John Michaels to Bruce Jameson)
+       same => n,Answer()
+       same => n,Set(AUDIOSOCKET_UUID=00000000-0000-0000-0000-000000001005)
+       same => n,TrySystem(/bin/rm -f /run/gate-tpa/${AUDIOSOCKET_UUID}.outcome)
+       same => n,AudioSocket(${AUDIOSOCKET_UUID},127.0.0.1:9092)
+       same => n,Set(GATE_OUTCOME=${SHELL(/bin/cat /run/gate-tpa/${AUDIOSOCKET_UUID}.outcome 2>/dev/null | /usr/bin/tr -d '\n')})
+       same => n,NoOp(Gate executive outcome: ${GATE_OUTCOME})
+       same => n,GotoIf($["${GATE_OUTCOME}"="transfer"]?bruce_transfer,1)
+       same => n,Hangup()
+
+      exten => bruce_transfer,1,NoOp(Transfer urgent call to Bruce)
+       same => n,Dial(PJSIP/1005,30)
        same => n,Hangup()
       EOF
 
@@ -114,11 +165,13 @@ write_files:
       qualify_frequency=30
       EOF
 
-        cat >> /etc/asterisk/extensions.conf <<EOF
+        if [[ "${extension}" != "1001" && "${extension}" != "1003" && "${extension}" != "1005" ]]; then
+          cat >> /etc/asterisk/extensions.conf <<EOF
 
       exten => ${extension},1,Dial(PJSIP/${extension},30)
        same => n,Hangup()
       EOF
+        fi
 
         cat >> "${credential_file}" <<EOF
       Username: ${extension}

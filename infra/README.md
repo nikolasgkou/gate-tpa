@@ -63,6 +63,9 @@ Current contact mapping:
 Special routes:
 
 - `9001`: route to the local Gemini AudioSocket bridge (`Gate AI Agent`)
+- `1001`: Emma scenario; Sarah connects directly after a short Gate prompt, unknown callers are rerouted to Sarah.
+- `1003`: Olivia scenario; unknown callers are routed through Gate before caregiver handoff.
+- `1005`: Bruce scenario; John is screened by Gate while Bruce is in a meeting, and only urgent calls are transferred.
 
 ## Notes
 
