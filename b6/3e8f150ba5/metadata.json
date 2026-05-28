@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "b63e8f150ba5",
+  "strategy": "manual-commit",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "infra/README.md",
+    "infra/cloud-init/asterisk.yaml"
+  ],
+  "sessions": [
+    {
+      "metadata": "/b6/3e8f150ba5/0/metadata.json",
+      "transcript": "/b6/3e8f150ba5/0/full.jsonl",
+      "content_hash": "/b6/3e8f150ba5/0/content_hash.txt",
+      "prompt": "/b6/3e8f150ba5/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 880053,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 22843264,
+    "output_tokens": 54545,
+    "api_call_count": 222
+  }
+}

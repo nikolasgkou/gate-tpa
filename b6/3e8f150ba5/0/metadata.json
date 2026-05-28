@@ -1,0 +1,58 @@
+{
+  "cli_version": "0.6.3",
+  "checkpoint_id": "b63e8f150ba5",
+  "session_id": "019e6e38-bf42-7a91-b043-ac388d895255",
+  "strategy": "manual-commit",
+  "created_at": "2026-05-28T13:00:56.72934203Z",
+  "branch": "master",
+  "checkpoints_count": 2,
+  "files_touched": [
+    "infra/README.md",
+    "infra/cloud-init/asterisk.yaml"
+  ],
+  "agent": "Codex",
+  "model": "gpt-5.5",
+  "turn_id": "2f5251bcfdd3",
+  "token_usage": {
+    "input_tokens": 880053,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 22843264,
+    "output_tokens": 54545,
+    "api_call_count": 222
+  },
+  "session_metrics": {
+    "turn_count": 14
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-05-28T13:00:56.689718275Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 12,
+    "human_modified": 49,
+    "human_removed": 0,
+    "total_committed": 12,
+    "total_lines_changed": 61,
+    "agent_percentage": 0,
+    "metric_version": 2
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 134,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0,
+      "user_added_per_file": {
+        ".serena/.gitignore": 2,
+        ".serena/project.yml": 132
+      }
+    }
+  ]
+}
